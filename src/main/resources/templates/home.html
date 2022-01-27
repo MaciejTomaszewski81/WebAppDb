@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Wyobrębnienie porządanych danych</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css/">
+</head>
+<body>
+<div class="container">
+    <div class="menu">
+        <h3>Wybierz sposób filtrowania</h3>
+
+        <form th:action="@{/}" method="post">
+            <div class="mb-3">
+                <select class="form-select short-input center-input" name="sort1">
+                    <option th:value="1">Wartości powtarzajace się</option>
+                    <option th:value="2">Wartości unikalne</option>
+                </select>
+            </div>
+            <form>
+                <div class="mb-3">
+                    <h3>Wybierz kolumnę do filtrowania</h3>
+                    <select class="form-select short-input center-input" name="sort">
+                        <option th:value="kolumna1">kolumna1</option>
+                        <option th:value="kolumna2">kolumna2</option>
+                        <option th:value="kolumna3">kolumna3</option>
+                        <option th:value="kolumna4">kolumna4</option>
+                    </select>
+                </div>
+                <button class="btn btn-outline-dark">Wyświetl</button>
+            </form>
+        </form>
+    </div>
+    <div class="container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>
+                    kolumna1
+                </th>
+                <th>
+                    kolumna2
+                </th>
+                <th>
+                    kolumna3
+                </th>
+                <th>
+                    kolumna4
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="tab: ${table}">
+                <td th:text="${tab.getKolumna1()}"></td>
+                <td th:text="${tab.getKolumna2()}"></td>
+                <td th:text="${tab.getKolumna3()}"></td>
+                <td th:text="${tab.getKolumna4()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
